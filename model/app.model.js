@@ -9,5 +9,8 @@ module.exports = {
   },
   findOne: (username) => {
     return db.load(`select * from Account where username = '${username}'`);
+  },
+  findOneById: (id) => {
+    return db.load(`select * from Account where id = '${id}'`);
   }
 };

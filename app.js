@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var auth = require('./routes/auth');
 
-const passport = require('passport');
+var passport = require('passport');
 
 require('./middlewares/passport');
 
@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/me', passport.authenticate('jwt', {session: false}), usersRouter);
 app.use('/user', auth);
 
 // catch 404 and forward to error handler
